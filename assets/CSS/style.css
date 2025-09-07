@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 body{
     background-color: #fff5e1;
     color: #5d4037;
@@ -7,7 +10,7 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6{
-    font-family: 'Paciente', cursive;
+    font-family: 'Pacifico', cursive;
     color: #5d4037;
 }
 
@@ -33,4 +36,85 @@ button, .boton{
 button:hover, .boton:hover{
     background-color: #8b4513;
     color: #fff5e1;
+}
+
+.header{
+    background-color: #ffc0cb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 120px;
+    padding: 0px 40px;
+    position: relative;
+    border-bottom: 2px solid #8b4513;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img{
+    height: 100px;
+    margin-right: 10px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centra los enlaces horizontalmente */
+    gap: 15px;
+    font-size: 20px;
+}
+
+.navbar a {
+    color: #5d4037;
+    text-decoration: none;
+    margin: 0 15px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #800020;
+}
+
+.navbar a.active{
+    color: #800020;
+}
+
+.carrito {
+    position: relative;
+    margin-right: 60px;
+}
+
+.carrito a {
+    color: #5d4037;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+}
+
+.carrito a:hover {
+    color: #800020;
+}
+
+.carrito a.active{
+    color: #800020;
+}
+
+.carrito a i{
+    font-size: 30px;
+}
+
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 1rem;
 }
