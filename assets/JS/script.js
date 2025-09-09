@@ -1,20 +1,6 @@
-let cantidadProductos = 0;
-
 document.addEventListener("DOMContentLoaded", function() {
-    const contador = document.getElementById("contador");
+    actualizarContadorCarrito();
 
-    function actualizarContador() {
-        contador.textContent = cantidadProductos > 9 ? "9+" : cantidadProductos;
-    }
-
-    actualizarContador();
-
-    // Funciones opcionales para agregar/quitar productos
-    // function agregarProducto() { cantidadProductos++; actualizarContador(); }
-    // function quitarProducto() { if(cantidadProductos > 0) cantidadProductos--; actualizarContador(); }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
     const textoUsuario = document.getElementById("textoUsuario");
     const btnIniciarSesion = document.getElementById("usuarioAccion");
     const btnCrearCuenta = document.querySelector(".btn-crear-cuenta");
@@ -41,22 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
         location.reload();
     });
 });
-
-/*Busqueda sin BDD
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("formBusqueda");
-    const input = document.getElementById("inputBusqueda");
-
-    // Ejemplo de productos
-    const productos = ["Zapatos", "Remeras", "Pantalones", "Bolsos", "Sombreros"];
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault(); // Evita recargar la página
-        const query = input.value.toLowerCase();
-        const resultados = productos.filter(p => p.toLowerCase().includes(query));
-        alert(resultados.length ? "Resultados: " + resultados.join(", ") : "No se encontraron productos");
-    });
-});*/
 
 document.addEventListener("DOMContentLoaded", function() {
     const regiones = {
@@ -298,19 +268,15 @@ const productos = [
   {codigo:"TE002", categoria:"Tortas Especiales", nombre:"Torta Especial de Boda", precio:60000, img:"TE002.jpg"}
 ];
 
-// Contenedor
-const contenedor = document.getElementById("contenedorProductos");
-const titulo = document.getElementById("tituloCategoria");
-
-// Obtener categoría de localStorage (cuando se hizo click en dropdown)
-let categoriaSeleccionada = localStorage.getItem("categoriaSeleccionada");
-
-// Función para renderizar productos
 function mostrarProductos(categoria = null) {
+  const contenedor = document.getElementById("contenedorProductos");
+  const titulo = document.getElementById("tituloCategoria");
+  if (!contenedor) return;
+
   contenedor.innerHTML = "";
   let filtrados = categoria ? productos.filter(p => p.categoria === categoria) : productos;
 
-  titulo.textContent = categoria ? categoria : "Todos los productos";
+  if (titulo) titulo.textContent = categoria ? categoria : "Todos los productos";
 
   filtrados.forEach(prod => {
     let card = document.createElement("div");
@@ -329,24 +295,98 @@ function mostrarProductos(categoria = null) {
   });
 }
 
-// Función añadir al carrito
+// =======================
+// Carrito
+// =======================
 function agregarAlCarrito(codigo) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  carrito.push(codigo);
+  let producto = productos.find(p => p.codigo === codigo);
+
+  if (!producto) return;
+
+  let item = carrito.find(p => p.codigo === codigo);
+
+  if (item) {
+    item.cantidad += 1;
+  } else {
+    carrito.push({...producto, cantidad: 1});
+  }
+
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  alert("Producto añadido al carrito!");
+
+  actualizarContadorCarrito();
+  renderCarrito();
+
+  alert(`✅ ${producto.nombre} añadido al carrito!`);
 }
 
-// Inicializar
-mostrarProductos(categoriaSeleccionada);
-localStorage.removeItem("categoriaSeleccionada");
+function renderCarrito() {
+  const itemsCarrito = document.getElementById("itemsCarrito");
+  const totalCarrito = document.getElementById("totalCarrito");
 
-// Capturar clicks en el dropdown del header
-document.querySelectorAll(".categoria-link").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    let cat = e.target.dataset.categoria;
-    localStorage.setItem("categoriaSeleccionada", cat);
-    window.location.href = "productos.html";
+  if (!itemsCarrito || !totalCarrito) return;
+
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  itemsCarrito.innerHTML = "";
+  let total = 0;
+
+  carrito.forEach((item, index) => {
+    total += item.precio * item.cantidad;
+
+    itemsCarrito.innerHTML += `
+      <div class="d-flex align-items-center justify-content-between border-bottom py-2">
+        <div class="d-flex align-items-center">
+          <img src="../img/${item.img}" alt="${item.nombre}" width="80" class="me-3">
+          <div>
+            <h6>${item.nombre}</h6>
+            <strong>$${item.precio.toLocaleString()}</strong>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-outline-secondary btn-sm" onclick="cambiarCantidad(${index}, -1)">-</button>
+          <input type="text" class="form-control text-center mx-2" value="${item.cantidad}" style="width: 50px;" readonly>
+          <button class="btn btn-outline-secondary btn-sm" onclick="cambiarCantidad(${index}, 1)">+</button>
+        </div>
+      </div>
+    `;
   });
+
+  totalCarrito.textContent = `$${total.toLocaleString()}`;
+  actualizarContadorCarrito();
+}
+
+function cambiarCantidad(index, cambio) {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  carrito[index].cantidad += cambio;
+  if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  renderCarrito();
+}
+
+function actualizarContadorCarrito() {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  let totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+
+  const contador = document.getElementById("contador");
+  if (contador) {
+    contador.textContent = totalItems;
+  }
+}
+
+// =======================
+// Inicialización
+// =======================
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const categoria = params.get("categoria");
+
+  if (document.getElementById("contenedorProductos")) {
+    if (categoria) {
+      mostrarProductos(categoria);
+    } else {
+      mostrarProductos();
+    }
+  }
+
+  renderCarrito();
 });
