@@ -18,6 +18,12 @@ p{
     color: #5d4037;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 .texto-secundario{
     color: #b0bec5;
 }
@@ -384,4 +390,10 @@ button:hover, .boton:hover{
 .card .btn:hover {
   background-color: #8b4513; /* chocolate */
   color: #fff5e1;           /* crema */
+}
+
+.card-nosotros:hover {
+  background-color: #ffe4ec; /* rosa clarito */
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
 }

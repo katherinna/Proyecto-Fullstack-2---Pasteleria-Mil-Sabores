@@ -180,23 +180,59 @@ document.addEventListener("DOMContentLoaded", function() {
                 nombre: document.getElementById("nombre").value.trim(),
                 apellidos: document.getElementById("apellidos").value.trim(),
                 correo: correo.value.trim(),
-                password: password.value, // ojo: en real debería guardarse encriptada
+                password: password.value,
                 fechaNacimiento: document.getElementById("fechaNacimiento").value,
                 region: regionSelect.value,
                 comuna: comunaSelect.value,
-                direccion: document.getElementById("direccion").value.trim()
+                direccion: document.getElementById("direccion").value.trim(),
+                codigoPromo: document.getElementById("codigoPromo")?.value.trim()
             };
-
+            
+            const hoy = new Date();
+            let beneficios = [];
+            
+            // 1) Mayores de 50 años → 50% descuento
+            if (nuevoUsuario.fechaNacimiento) {
+                const fechaNac = new Date(nuevoUsuario.fechaNacimiento);
+                let edad = hoy.getFullYear() - fechaNac.getFullYear();
+                const mes = hoy.getMonth() - fechaNac.getMonth();
+                if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+                    edad--;
+                }
+                if (edad >= 50) {
+                    beneficios.push("🎉 Descuento del 50% en todos los productos");
+                }
+                
+                // 3) Estudiantes DUOC → torta gratis en su cumpleaños
+                const correo = nuevoUsuario.correo.toLowerCase();
+                if ((correo.endsWith("@duoc.cl") || correo.endsWith("@profesor.duoc.cl")) &&
+                fechaNac.getDate() === hoy.getDate() &&
+                fechaNac.getMonth() === hoy.getMonth()) {
+                    beneficios.push("🎂 ¡Feliz cumpleaños! Obtienes una torta gratis 🎁");
+                }
+            }
+            
+            // 2) Código FELICES50 → 10% de descuento
+            if (nuevoUsuario.codigoPromo?.toUpperCase() === "FELICES50") {
+                beneficios.push("🎊 Tienes 10% de descuento de por vida");
+            }
+            
+            if (beneficios.length > 0) {
+                alert("✅ Registro exitoso\n\n" + beneficios.join("\n"));
+            } else {
+                alert("✅ Usuario registrado correctamente!");
+            }
+            
+            // Guardar en localStorage
             if (usuarios.some(u => u.correo === nuevoUsuario.correo)) {
                 alert("⚠️ Ya existe un usuario con este correo.");
                 return;
             }
-
+            
             usuarios.push(nuevoUsuario);
             localStorage.setItem("usuarios", JSON.stringify(usuarios));
-            alert("✅ Usuario registrado correctamente!");
             form.reset();
-            window.location.href = "index.html"; // <- Redirige al home
+            window.location.href = "index.html"; 
             document.querySelectorAll(".is-valid").forEach(el => el.classList.remove("is-valid"));
         }
     });
@@ -268,118 +304,40 @@ const productos = [
   {codigo:"TE002", categoria:"Tortas Especiales", nombre:"Torta Especial de Boda", precio:60000, img:"TE002.jpg"}
 ];
 
-function mostrarProductos(categoria = null) {
+function mostrarProductos(categoria = "") {
   const contenedor = document.getElementById("contenedorProductos");
-  const titulo = document.getElementById("tituloCategoria");
   if (!contenedor) return;
 
   contenedor.innerHTML = "";
-  let filtrados = categoria ? productos.filter(p => p.categoria === categoria) : productos;
 
-  if (titulo) titulo.textContent = categoria ? categoria : "Todos los productos";
+  const filtrados = categoria
+    ? productos.filter((prod) => prod.categoria === categoria)
+    : productos;
 
-  filtrados.forEach(prod => {
-    let card = document.createElement("div");
-    card.classList.add("col-md-3");
-    card.innerHTML = `
-      <div class="card h-100">
-        <img src="../img/${prod.img}" class="card-img-top" alt="${prod.nombre}">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">${prod.nombre}</h5>
-          <p class="card-text">$${prod.precio.toLocaleString()} CLP</p>
-          <button class="btn btn-primary mt-auto" onclick="agregarAlCarrito('${prod.codigo}')">Añadir al carrito</button>
+  filtrados.forEach((prod) => {
+    const div = document.createElement("div");
+    div.classList.add("col-md-3", "mb-4"); // 👈 ahora 4 por fila
+
+    div.innerHTML = `
+      <div class="card h-100 shadow-sm">
+        <img src="../img/${prod.img}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; height: 200px;">
+        <div class="card-body p-3 d-flex flex-column">
+          <h5 class="card-title mb-2">${prod.nombre}</h5>
+          <p class="card-text mb-2"><strong>$${prod.precio.toLocaleString()}</strong></p>
+          <button class="btn btn-primary mt-auto" onclick="alert('Agregaste ${prod.nombre} al carrito')">Agregar al carrito</button>
         </div>
       </div>
     `;
-    contenedor.appendChild(card);
+
+    contenedor.appendChild(div);
   });
 }
 
-// =======================
-// Carrito
-// =======================
-function agregarAlCarrito(codigo) {
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  let producto = productos.find(p => p.codigo === codigo);
-
-  if (!producto) return;
-
-  let item = carrito.find(p => p.codigo === codigo);
-
-  if (item) {
-    item.cantidad += 1;
-  } else {
-    carrito.push({...producto, cantidad: 1});
-  }
-
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-
-  actualizarContadorCarrito();
-  renderCarrito();
-
-  alert(`✅ ${producto.nombre} añadido al carrito!`);
-}
-
-function renderCarrito() {
-  const itemsCarrito = document.getElementById("itemsCarrito");
-  const totalCarrito = document.getElementById("totalCarrito");
-
-  if (!itemsCarrito || !totalCarrito) return;
-
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  itemsCarrito.innerHTML = "";
-  let total = 0;
-
-  carrito.forEach((item, index) => {
-    total += item.precio * item.cantidad;
-
-    itemsCarrito.innerHTML += `
-      <div class="d-flex align-items-center justify-content-between border-bottom py-2">
-        <div class="d-flex align-items-center">
-          <img src="../img/${item.img}" alt="${item.nombre}" width="80" class="me-3">
-          <div>
-            <h6>${item.nombre}</h6>
-            <strong>$${item.precio.toLocaleString()}</strong>
-          </div>
-        </div>
-        <div class="d-flex align-items-center">
-          <button class="btn btn-outline-secondary btn-sm" onclick="cambiarCantidad(${index}, -1)">-</button>
-          <input type="text" class="form-control text-center mx-2" value="${item.cantidad}" style="width: 50px;" readonly>
-          <button class="btn btn-outline-secondary btn-sm" onclick="cambiarCantidad(${index}, 1)">+</button>
-        </div>
-      </div>
-    `;
-  });
-
-  totalCarrito.textContent = `$${total.toLocaleString()}`;
-  actualizarContadorCarrito();
-}
-
-function cambiarCantidad(index, cambio) {
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  carrito[index].cantidad += cambio;
-  if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  renderCarrito();
-}
-
-function actualizarContadorCarrito() {
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  let totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-
-  const contador = document.getElementById("contador");
-  if (contador) {
-    contador.textContent = totalItems;
-  }
-}
-
-// =======================
 // Inicialización
-// =======================
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const categoria = params.get("categoria");
-
+  
   if (document.getElementById("contenedorProductos")) {
     if (categoria) {
       mostrarProductos(categoria);
@@ -387,6 +345,134 @@ document.addEventListener("DOMContentLoaded", () => {
       mostrarProductos();
     }
   }
-
+  
   renderCarrito();
 });
+
+// Selecciona 3 productos aleatorios
+function obtenerProductosAleatorios() {
+    const copia = [...productos];
+    let seleccionados = [];
+    for (let i = 0; i < 3; i++) {
+        const index = Math.floor(Math.random() * copia.length);
+        seleccionados.push(copia.splice(index, 1)[0]);
+    }
+    return seleccionados;
+}
+
+// Renderizar carrito
+function mostrarCarrito() {
+    const itemsCarrito = document.getElementById("itemsCarrito");
+    if (!itemsCarrito) return;
+
+    const productosCarrito = obtenerProductosAleatorios();
+    itemsCarrito.innerHTML = "";
+
+    productosCarrito.forEach((prod, i) => {
+        let div = document.createElement("div");
+        div.classList.add("card", "mb-3", "shadow-sm");
+        div.style.minHeight = "200px"; // 👈 altura mínima para uniformidad
+        div.innerHTML = `
+            <div class="row g-0">
+                <div class="col-md-4 d-flex align-items-center">
+                    <img src="../img/${prod.img}" class="img-fluid rounded-start" 
+                         alt="${prod.nombre}" style="object-fit: cover; height: 100%; max-height: 200px; width: 100%;">
+                </div>
+                <div class="col-md-8 d-flex flex-column">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${prod.nombre}</h5>
+                        <p class="card-text">Aquí va la descripción</p>
+                        <p class="card-text"><strong>Precio: $${prod.precio.toLocaleString()}</strong></p>
+                        
+                        <div class="mt-auto d-flex justify-content-end gap-3">
+                            <a href="#" class="text-secondary d-flex align-items-center text-decoration-none">
+                                <i class="bi bi-pencil-square me-1"></i> Editar
+                            </a>
+                            <a href="#" class="text-danger d-flex align-items-center text-decoration-none">
+                                <i class="bi bi-trash3 me-1"></i> Eliminar
+                            </a>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2 mt-auto">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad(${i}, -1)">-</button>
+                            <input type="number" id="cantidad-${i}" 
+                                   class="form-control text-center" value="1" min="1" style="width:70px">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad(${i}, 1)">+</button>
+                        </div>
+
+                        <p class="mt-2">Subtotal: 
+                            <span id="subtotal-${i}">$${prod.precio.toLocaleString()}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+        itemsCarrito.appendChild(div);
+    });
+
+    // Guardamos en memoria global para acceder luego
+    window.productosCarrito = productosCarrito;
+    actualizarTotal();
+}
+
+
+// Cambiar cantidad con botones + -
+function cambiarCantidad(index, delta) {
+    const input = document.getElementById(`cantidad-${index}`);
+    let nuevaCantidad = parseInt(input.value) + delta;
+    if (nuevaCantidad < 1) nuevaCantidad = 1;
+    input.value = nuevaCantidad;
+    actualizarSubtotal(index);
+}
+
+// Actualizar subtotal al escribir manualmente
+document.addEventListener("input", (e) => {
+    if (e.target && e.target.id.startsWith("cantidad-")) {
+        const index = e.target.id.split("-")[1];
+        actualizarSubtotal(index);
+    }
+});
+
+function actualizarSubtotal(index) {
+    const cantidad = parseInt(document.getElementById(`cantidad-${index}`).value);
+    const prod = window.productosCarrito[index];
+    const subtotal = cantidad * prod.precio;
+    document.getElementById(`subtotal-${index}`).textContent = `$${subtotal.toLocaleString()}`;
+    actualizarTotal();
+}
+
+let descuentoActivo = 0;
+
+// Actualizar subtotales y total
+function actualizarTotal() {
+  let subtotal = 0;
+  window.productosCarrito.forEach((prod, i) => {
+    const cantidad = parseInt(document.getElementById(`cantidad-${i}`).value);
+    subtotal += cantidad * prod.precio;
+  });
+
+  // mostrar subtotal
+  document.getElementById("subtotalCarrito").textContent = `$${subtotal.toLocaleString()}`;
+  document.getElementById("descuentoCarrito").textContent = `$${descuentoActivo.toLocaleString()}`;
+
+  const total = subtotal - descuentoActivo;
+  document.getElementById("totalCarrito").textContent = `$${total.toLocaleString()}`;
+}
+
+// Aplicar código de descuento
+function aplicarDescuento() {
+  const codigo = document.getElementById("codigoDescuento").value.trim().toLowerCase();
+
+  if (codigo === "pastelito10") {
+    descuentoActivo = 5000; // monto fijo (ejemplo)
+    alert("¡Código aplicado con éxito! 🎉");
+  } else {
+    descuentoActivo = 0;
+    alert("Código no válido 😢");
+  }
+
+  actualizarTotal();
+}
+
+// Ejecutar al cargar carrito
+document.addEventListener("DOMContentLoaded", mostrarCarrito);

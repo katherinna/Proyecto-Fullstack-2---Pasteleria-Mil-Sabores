@@ -67,18 +67,17 @@
             <div class="row">
                 <div class="col-md-8" id="itemsCarrito"></div>
                 <div class="col-md-4">
-                    <div class="p-3 border rounded bg-light">
-                        <h5>Total: <span id="totalCarrito">$0</span></h5>
-                        <hr>
-                        <div class="mb-3">
-                            <label for="cupon" class="form-label">Ingrese el cupón de descuento</label>
-                            
-                            <div class="input-group">
-                                <input type="text" id="cupon" class="form-control" placeholder="Ej: DESCUENTO10">
-                                <button class="btn btn-secondary" id="btnAplicar">Aplicar</button>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Subtotal: <span id="subtotalCarrito">$0</span></h5>
+                            <h6 class="text-danger">Descuento: - <span id="descuentoCarrito">$0</span></h6>
+                            <h4 class="mt-3">Total: <span id="totalCarrito">$0</span></h4>
+                            <div class="input-group mt-3">
+                                <input type="text" id="codigoDescuento" class="form-control" placeholder="Código de descuento">
+                                <button class="btn btn-outline-secondary" type="button" onclick="aplicarDescuento()">Aplicar</button>
                             </div>
+                            <button class="btn btn-success w-100 mt-3">Pagar</button>
                         </div>
-                        <button class="btn btn-success w-100">PAGAR</button>
                     </div>
                 </div>
             </div>
