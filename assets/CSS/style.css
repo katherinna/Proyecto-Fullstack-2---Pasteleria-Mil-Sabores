@@ -557,12 +557,15 @@ button:hover, .boton:hover{
     margin-bottom: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* sombrita */
     position: relative; /*esto es pal acordeon uwu*/
+    flex-wrap: nowrap;
 }
 
 .blog_desc {
-    flex: 2; /*texto usa más espacio*/
+    flex: 1 1 60%; /*texto usa más espacio*/
+    min-width: 0;
     display: flex;
     flex-direction: column;
+    overflow-wrap: break-word;
     
 }
 
@@ -617,10 +620,11 @@ button:hover, .boton:hover{
 
 
 .img_blog {
-  flex: 1; /* imagen chica*/
+  flex: 0 0 300px; /* imagen chica*/
   display: flex;
   justify-content: center ;
   align-items: flex-start;
+  margin-top: 15px;
 }
 
 .img_blog img{
@@ -628,6 +632,7 @@ button:hover, .boton:hover{
     height: auto;
     border-radius: 12px;
     height: 250px;
+    object-fit: cover;
 }
 
 .blog_desc .accordion{
@@ -645,4 +650,14 @@ button:hover, .boton:hover{
 .accordion .accordion-button:not(.collapsed) {
   background-color: #800020; 
   color: #fff;
+}
+
+@media (max-width: 900px) {
+  .blog {
+    flex-wrap: wrap;
+  }
+  .blog_desc,
+  .img_blog {
+    flex: 1 1 100%;
+  }
 }
