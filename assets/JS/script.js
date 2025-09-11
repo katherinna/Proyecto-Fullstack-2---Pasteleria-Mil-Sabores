@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", mostrarCarrito);
 const productos_detalle = {
    "TC001": {
         categoria: "Tortas Cuadradas",
@@ -114,22 +115,26 @@ const productos_detalle = {
 };
 
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+document.addEventListener("DOMContentLoaded", function() {
+    // Solo ejecutar en la página de detalles
+    if (document.getElementById("categoria")) {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
 
-// Mostrar datos en la página
-if (productos_detalle[id]) {
-    document.getElementById("categoria").textContent = productos_detalle[id].categoria;
-    document.getElementById("nombre").textContent = productos_detalle[id].nombre;
-    document.getElementById("precio").textContent = productos_detalle[id].precio;
-    document.getElementById("descripcion").textContent = productos_detalle[id].descripcion;
-    document.getElementById("img").src = productos_detalle[id].imagen;
-    document.getElementById("img").alt = productos_detalle[id].nombre;
-    document.title = productos_detalle[id].nombre + " - Pastelería Mil Sabores";
-} else {
-    document.querySelector(".producto").innerHTML =
-        "<h2>Producto no encontrado</h2><a href='catalogo.html'>Volver al catálogo</a>";
-}
+        if (productos_detalle[id]) {
+            document.getElementById("categoria").textContent = productos_detalle[id].categoria;
+            document.getElementById("nombre").textContent = productos_detalle[id].nombre;
+            document.getElementById("precio").textContent = productos_detalle[id].precio;
+            document.getElementById("descripcion").textContent = productos_detalle[id].descripcion;
+            document.getElementById("img").src = productos_detalle[id].imagen;
+            document.getElementById("img").alt = productos_detalle[id].nombre;
+            document.title = productos_detalle[id].nombre + " - Pastelería Mil Sabores";
+        } else {
+            document.querySelector(".producto-detalle").innerHTML =
+                "<h2>Producto no encontrado</h2><a href='productos.html'>Volver al catálogo</a>";
+        }
+    }
+});
 
 // --- Personalización ---
 document.addEventListener("DOMContentLoaded", () => {
