@@ -1,11 +1,7 @@
-/* IMPORTACIÓN DE FUENTES*/
-
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-/* ESTILOS GENERALES */
-
-body {
+body{
     background-color: #fff5e1;
     color: #5d4037;
     font-family: 'Lato', sans-serif;
@@ -13,21 +9,20 @@ body {
     padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6{
     font-family: 'Pacifico', cursive;
     color: #5d4037;
 }
 
-p {
+p{
     color: #5d4037;
 }
 
-.texto-secundario {
+.texto-secundario{
     color: #b0bec5;
 }
 
-/* BOTONES GENERALES */
-button, .boton {
+button, .boton{
     background-color: #ffc0cb;
     color: #fff5e1;
     border: 2px solid #8b4513;
@@ -38,13 +33,12 @@ button, .boton {
     transition: background-color 0.3s;
 }
 
-button:hover, .boton:hover {
+button:hover, .boton:hover{
     background-color: #8b4513;
     color: #fff5e1;
 }
 
-/* HEADER & NAVEGACIÓN */
-.header {
+.header{
     background-color: #ffc0cb;
     display: flex;
     align-items: center;
@@ -60,16 +54,15 @@ button:hover, .boton:hover {
     align-items: center;
 }
 
-.header .logo img {
+.header .logo img{
     height: 100px;
     margin-right: 10px;
 }
 
-/* Menú principal */
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* centra los enlaces horizontalmente */
     gap: 15px;
     font-size: 20px;
 }
@@ -83,43 +76,47 @@ button:hover, .boton:hover {
     transition: color 0.3s ease;
 }
 
-.navbar a:hover,
-.navbar a.active {
+.navbar a:hover {
     color: #800020;
 }
 
-/* Carrito */
+.navbar a.active{
+    color: #800020;
+}
+
 .carrito {
     position: relative;
-    margin: 0;
+    margin: 0; /* eliminado margin duplicado para flex container */
 }
 
 .carrito a {
     color: #5d4037;
     text-decoration: none;
+    display: inline-block;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     font-size: 20px;
     position: relative;
-    display: inline-block;
 }
 
-.carrito a:hover,
-.carrito a.active {
+.carrito a:hover {
     color: #800020;
 }
 
-.carrito a i {
+.carrito a.active{
+    color: #800020;
+}
+
+.carrito a i{
     font-size: 30px;
 }
 
-/* Acciones de usuario */
 .acciones-usuario {
     position: relative;
     display: flex;
     align-items: center;
     gap: 20px;
-    margin: 0;
+    margin: 0; /* eliminado margin duplicado para flex container */
 }
 
 .usuario:hover {
@@ -136,7 +133,6 @@ button:hover, .boton:hover {
     display: flex;
     align-items: center;
     gap: 6px;
-    cursor: pointer;
 }
 
 .btn-usuario i {
@@ -147,21 +143,31 @@ button:hover, .boton:hover {
     color: #800020;
 }
 
-/* DROPDOWNS */
+/* Dropdown principal */
 .dropdown-menu {
-    background-color: #ffc0cb;
-    border: 2px solid #8b4513;
+    background-color: #ffc0cb; /* rosa claro del header */
+    border: 2px solid #8b4513; /* borde chocolate */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     min-width: 180px;
     padding: 10px;
 }
 
+/* Clase para mostrar el menú */
 .dropdown-menu.show {
-    display: block;
+    display: block; /* mostrar el menú */
 }
 
-/* Botones dentro del dropdown */
+.dropdown-menu button {
+    color: #5d4037; /* marrón oscuro */
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    text-align: left;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+
 .dropdown-menu button {
     display: block;
     width: 100%;
@@ -176,54 +182,52 @@ button:hover, .boton:hover {
     text-align: center;
 }
 
-/* Botón iniciar sesión */
 .dropdown-menu .btn-iniciar-sesion {
     background-color: #8b4513 !important;
     color: #fff5e1 !important;
+    text-align: center;
+    display: block;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .dropdown-menu .btn-iniciar-sesion:hover {
     background-color: #a05a2b !important;
+    color: #fff5e1 !important;
 }
 
-/* Botón crear cuenta */
 .dropdown-menu .btn-crear-cuenta {
     background-color: #d67ca0 !important;
     color: #fff5e1 !important;
+    text-align: center;
+    display: block;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .dropdown-menu .btn-crear-cuenta:hover {
     background-color: #b35b82 !important;
+    color: #fff5e1 !important;
 }
 
-/* Dropdown hover en navbar */
-.nav-item.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-.dropdown-menu .dropdown-item {
-    font-family: 'Lato', sans-serif;
-    color: #8b4513;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #8b4513;
-    color: #fff5e1;
-}
-
-/* BARRA DE BÚSQUEDA */
 #formBusqueda {
-    display: flex;
+    display: flex; /* fuerza que input y botón estén en línea */
     align-items: center;
-    gap: 5px;
+    gap: 5px; /* espacio entre input y botón */
 }
 
 #formBusqueda input {
-    height: 38px;
+    height: 38px; /* opcional: ajusta a altura de botón */
 }
 
 #formBusqueda .btn {
-    background-color: #8b4513;
+    background-color: #8b4513; /* chocolate */
     color: #fff5e1;
     border: none;
     border-radius: 6px;
@@ -235,6 +239,14 @@ button:hover, .boton:hover {
     background-color: #a05a2b;
 }
 
+/* Contenedor flex para barra de búsqueda, usuario y carrito */
+.header .d-flex.align-items-center.ms-3 {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* espacio entre los tres elementos */
+    margin-left: 50px; /* mueve todo el bloque a la derecha */
+}
+
 /* FORMULARIO DE REGISTRO */
 .registro-container {
     background-color: #fff; 
@@ -242,8 +254,9 @@ button:hover, .boton:hover {
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    max-width: 420px;
-    margin: 80px auto 40px auto;
+    max-width: 420px; /* más delgado */
+    margin: 40px auto;
+    margin-top: 80px;
 }
 
 .registro-container h2 {
@@ -251,24 +264,24 @@ button:hover, .boton:hover {
     text-align: center;
     margin-bottom: 20px;
     color: #8b4513;
-    font-size: 1.4rem;
+    font-size: 1.4rem; /* más pequeño pero elegante */
 }
 
 .registro-container label {
     font-weight: bold;
     margin-bottom: 4px;
     color: #5d4037;
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* etiquetas más chicas */
 }
 
 .registro-container .form-control, 
 .registro-container .form-select {
-    border: 2px solid #d67ca0;
+    border: 2px solid #d67ca0; /* rosadito */
     border-radius: 8px;
-    padding: 6px 10px;
-    font-size: 0.9rem;
+    padding: 6px 10px; /* menos alto */
+    font-size: 0.9rem; /* texto más compacto */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    background-color: #fff5e1;
+    background-color: #fff5e1; /* tono cremita */
 }
 
 .registro-container .form-control:focus,
@@ -279,7 +292,7 @@ button:hover, .boton:hover {
 }
 
 .registro-container button {
-    background-color: #ffc0cb;
+    background-color: #ffc0cb; /* rosado */
     color: #5d4037;
     font-weight: bold;
     border: 2px solid #8b4513;
@@ -295,261 +308,171 @@ button:hover, .boton:hover {
     color: #fff5e1;
 }
 
-/* TARJETAS DE PRODUCTOS */
+/* Forzar el dropdown al pasar el mouse */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Estilos dropdown */
+.dropdown-menu {
+  background-color: #ffc0cb; /* Rosado de tu paleta */
+  border: 2px solid #8b4513; /* Chocolate */
+  border-radius: 8px;
+}
+
+.dropdown-menu .dropdown-item {
+  font-family: 'Lato', sans-serif;
+  color: #8b4513; /* Chocolate */
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #8b4513; /* Chocolate */
+  color: #fff5e1; /* Cremita */
+}
+
+/* Botón de productos igual a tu estilo */
+.nav-link {
+  font-family: 'Lato', sans-serif;
+  color: #8b4513 !important; 
+  font-weight: bold;
+}
+.nav-link:hover {
+  color: #5a2e0d !important; /* Chocolate más oscuro */
+}
+
+/* Tarjetas de productos */
 .card {
-    background-color: #fff5e1;
-    border: 2px solid #8b4513;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff5e1; /* fondo crema */
+  border: 2px solid #8b4513; /* borde chocolate */
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .card-title {
-    color: #5d4037;
-    font-weight: bold;
-    font-size: 1.1rem;
+  color: #5d4037; /* chocolate oscuro */
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .card-text {
-    color: #5d4037;
-    font-size: 1rem;
+  color: #5d4037; /* mismo tono que el texto general */
+  font-size: 1rem;
 }
 
 .card-img-top {
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 2px solid #8b4513;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #8b4513; /* divide imagen del texto */
 }
 
+/* Botón dentro de la card */
 .card .btn {
-    background-color: #ffc0cb;
-    color: #5d4037;
-    border: 2px solid #8b4513;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
+  background-color: #ffc0cb; /* rosa claro */
+  color: #5d4037;            /* chocolate oscuro */
+  border: 2px solid #8b4513;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .card .btn:hover {
-    background-color: #8b4513;
-    color: #fff5e1;
+  background-color: #8b4513; /* chocolate */
+  color: #fff5e1;           /* crema */
 }
-
-/* PRODUCTOS INDEX */
-.boton_productos {
-    text-align: center;
-    margin: 10px 0 20px;
+.img-producto-detalle {
+    width: 400px;
+    height: 400px;
+    object-fit:cover ; /* mantiene todo el contenido, puede dejar espacio vacío */
+    background-color: #fff; /* para ver un fondo consistente */
+    border: 3px solid #8b4513; /* borde chocolate */
+    border-radius: 12px;        /* esquinas redondeadas */
+    padding: 4px;               /* pequeño espacio entre imagen y borde */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* sombra sutil para dar profundidad */
 }
-
-.boton_productos .btn-products {
-    display: inline-block;
-    background-color: #ffc0cb;
-    color: #fff5e1;
-    border: 2px solid #8b4513;
-    padding: 10px 20px;
+@media (min-width: 992px) {
+    .img-producto-detalle {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+}
+.personalizacion {
+    margin: 15px 0;
+    padding: 10px;
+    border: 2px dashed #d67ca0; /* borde punteado rosado */
     border-radius: 8px;
-    font-family: 'Lato', sans-serif;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: #fff5e1; /* fondo crema */
 }
 
-.boton_productos .btn-products:hover {
-    background-color: #ff99aa;
-}
-
-.productos_index .card {
-    width: 100% !important; 
-    max-width: 18rem;       
-    margin: 0 auto 25px auto; 
-}
-
-/* CONTACTO */
-.logo_contacto {
-    display: flex;
-    justify-content: center;
-}
-
-.n_contacto {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.formulario_contacto { 
-    background-color: #fff; 
-    border: 2px solid #8b4513;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    max-width: 520px;
-    margin: 60px auto 40px auto;
-}
-
-/* ADMIN (sidebar + saludo) */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 220px;
-    height: 100%;
-    background-color: #ffc0cb;
-    padding-top: 10px;
-}
-
-.sidebar .logo {
-    display: block;
-    margin: 15px auto 0 auto;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar li {
-    margin: 20px;
-}
-
-.sidebar h5 {
-    text-align: center;
-    margin: 1% 0 20px 0;
-    font-family: 'Lato', sans-serif;
-}
-
-.sidebar a {
-    display: block;
-    text-decoration: none;
+.personalizacion label {
+    font-weight: bold;
     color: #5d4037;
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.sidebar a:hover {
-    background-color: #a05a2b;
-    border-radius: 4px;
-}
-
-.sidebar i {
-    margin-right: 10px;
-}
-
-.saludo_admin {
-    margin-left: 220px;
-    padding: 20px;
-}
-
-.noti {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 1.5rem;
-    color: #8b4513;
     cursor: pointer;
-    transition: color 0.3s;
 }
 
-.noti:hover {
-    color: #ff69b4;
+#mensajePersonalizado {
+    border: 2px solid #d67ca0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.95rem;
+    color: #5d4037;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* BLOG */
+#mensajePersonalizado:focus {
+    border-color: #8b4513;
+    box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+    outline: none;
+}
+.compartir {
+  margin-top: 15px;
+}
 
-.t_blog {
-    text-align: center;
+.compartir p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Estilos generales de botones */
+.compartir button {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  margin: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.compartir button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Facebook */
+.btn-facebook {
+  background-color: #1877f2;
+}
+
+/* Twitter (X) */
+.btn-twitter {
+  background-color: #1da1f2;
+}
+
+/* WhatsApp */
+.btn-whatsapp {
+  background-color: #25d366;
+}
+.botones-container-detalle {
+    display: flex;
+    justify-content: space-between; /* separa los botones a extremos */
     margin-top: 20px;
-}
-
-.blog {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 20px;
-    margin: 20px 0 10px 0;
-    background-color: #ffdce7;
-    padding: 15px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    position: relative;
-    flex-wrap: nowrap;
-}
-
-.blog_desc {
-    flex: 1 1 60%;
-    display: flex;
-    flex-direction: column;
-    overflow-wrap: break-word;
-}
-
-.tituloBlog {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.etiqueta,
-.etiqueta_articulo,
-.etiqueta_recomendacion {
-    display: inline-block;
-    padding: 3px 8px;
-    margin-left: 10px;
-    margin-bottom: 15px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: #fff;
-    border-radius: 12px;
-    text-decoration: none;
-    align-self: flex-start;
-}
-
-.etiqueta { background-color: #f67aa5; }
-.etiqueta_articulo { background-color: #e98053; }
-.etiqueta_recomendacion { background-color: #d52e4d; }
-
-.img_blog {
-    flex: 0 0 300px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 15px;
-}
-
-.img_blog img {
-    max-width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-.blog_desc .accordion {
-    width: 100%;
-    margin-top: 15px;
-}
-
-.accordion .accordion-button {
-    background-color: #ffc0cb;
-    font-weight: bold;
-    border: 1px solid #8b4513;
-    color: #8b4513;
-}
-
-.accordion .accordion-button:not(.collapsed) {
-    background-color: #800020;
-    color: #fff;
-}
-
-@media (max-width: 900px) {
-    .blog {
-        flex-wrap: wrap;
-    }
-    .blog_desc,
-    .img_blog {
-        flex: 1 1 100%;
-    }
 }
