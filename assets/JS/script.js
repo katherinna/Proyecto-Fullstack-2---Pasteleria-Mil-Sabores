@@ -1,32 +1,15 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-
     const textoUsuario = document.getElementById("textoUsuario");
     const btnIniciarSesion = document.getElementById("usuarioAccion");
     const btnCrearCuenta = document.querySelector(".btn-crear-cuenta");
-    const logoutBtn = document.getElementById("logoutBtn");
 
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    // Siempre muestra iniciar sesión
+    textoUsuario.textContent = "Iniciar sesión";
 
-    if (isLoggedIn) {
-        textoUsuario.textContent = "Mi perfil";
-        btnIniciarSesion.textContent = "Ver perfil";
-        btnIniciarSesion.onclick = () => window.location.href = "perfil.html";
-        logoutBtn.style.display = "block";
-    } else {
-        textoUsuario.textContent = "Iniciar sesión";
-        btnIniciarSesion.textContent = "Iniciar sesión";
-        btnIniciarSesion.onclick = () => window.location.href = "inicio_sesion.html";
-        logoutBtn.style.display = "none";
-    }
-
+    // Botón de registrar
     btnCrearCuenta.onclick = () => window.location.href = "registrar_usuario.html";
-
-    logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("isLoggedIn");
-        location.reload();
-    });
 });
+
 
 document.addEventListener("DOMContentLoaded", function() {
     const regiones = {
@@ -95,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- VALIDACIONES Y SUBMIT ---
     form.addEventListener("submit", function(e){
         e.preventDefault();
-        // aquí va todo tu código de validación y guardado de usuario
     });
 
     // ---- VALIDACIÓN RUN ----
@@ -494,8 +476,6 @@ document.addEventListener("DOMContentLoaded" , () => {
     const mensajeInput = document.getElementById("mensaje");
     const mensajeAlert = document.getElementById("mensajeEnv"); //pongo esto solo porque no me funciona nadaaa
 
-
-
     //limpiar mensaje al ingresar datos en el imput
     [nombreInput, correoInput, mensajeInput].forEach(input => {
         input.addEventListener ("input", () => {
@@ -534,7 +514,7 @@ document.addEventListener("DOMContentLoaded" , () => {
     
     });
     
-    //perplexity, push up bonito
+    //push up
     function mostrarMensajePushup() {
         const mensaje = document.getElementById("mensajePushup");
         mensaje.style.display = "block";
@@ -542,9 +522,7 @@ document.addEventListener("DOMContentLoaded" , () => {
             mensaje.style.display = "none";
         }, 3000); // desaparece después de 3 segundos
 }
-
 });
-
 
 const productos_detalle = {
    "TC001": {
@@ -723,23 +701,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (chkPersonalizacion && mensajeInput) {
         chkPersonalizacion.addEventListener("change", () => {
             mensajeInput.style.display = chkPersonalizacion.checked ? "block" : "none";
-        });
-    }
-
-    // Validar al agregar al carrito
-    const btnAgregar = document.getElementById("btnAgregarCarrito");
-    if (btnAgregar) {
-        btnAgregar.addEventListener("click", () => {
-            let mensaje = "";
-            if (chkPersonalizacion.checked) {
-                mensaje = mensajeInput.value.trim();
-                if (mensaje.length > 30) {
-                    alert("El mensaje no puede superar los 30 caracteres.");
-                    return;
-                }
-            }
-            console.log("Producto agregado:", productos_detalle[id].nombre, " | Mensaje:", mensaje || "Sin mensaje");
-            // Aquí iría tu lógica para agregar al carrito con el mensaje
         });
     }
 });
