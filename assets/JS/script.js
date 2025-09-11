@@ -661,7 +661,26 @@ const productos_detalle = {
         imagen: "../img/TE002.jpg"
     }
 };
+document.addEventListener("DOMContentLoaded", function() {
+    // Solo ejecutar en la página de detalles
+    if (document.getElementById("categoria")) {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
 
+        if (productos_detalle[id]) {
+            document.getElementById("categoria").textContent = productos_detalle[id].categoria;
+            document.getElementById("nombre").textContent = productos_detalle[id].nombre;
+            document.getElementById("precio").textContent = productos_detalle[id].precio;
+            document.getElementById("descripcion").textContent = productos_detalle[id].descripcion;
+            document.getElementById("img").src = productos_detalle[id].imagen;
+            document.getElementById("img").alt = productos_detalle[id].nombre;
+            document.title = productos_detalle[id].nombre + " - Pastelería Mil Sabores";
+        } else {
+            document.querySelector(".producto-detalle").innerHTML =
+                "<h2>Producto no encontrado</h2><a href='productos.html'>Volver al catálogo</a>";
+        }
+    }
+});
 
 document.addEventListener("DOMContentLoaded", function() {
     const togglePass = document.getElementById("togglePass");
@@ -725,4 +744,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
