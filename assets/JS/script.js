@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    actualizarContadorCarrito();
+    
 
     const textoUsuario = document.getElementById("textoUsuario");
     const btnIniciarSesion = document.getElementById("usuarioAccion");
@@ -348,7 +348,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  renderCarrito();
 });
 
 // Selecciona 3 productos aleatorios
