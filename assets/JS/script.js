@@ -478,7 +478,6 @@ function aplicarDescuento() {
 
 // Ejecutar al cargar carrito
 document.addEventListener("DOMContentLoaded", mostrarCarrito);
-<<<<<<< HEAD
 
 
 //Contacto
@@ -548,7 +547,6 @@ document.addEventListener("DOMContentLoaded" , () => {
 });
 
 
-=======
 const productos_detalle = {
    "TC001": {
         categoria: "Tortas Cuadradas",
@@ -728,4 +726,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
->>>>>>> 0628dda2dad1ca0b8c6cee2f113606717adfc9c2
