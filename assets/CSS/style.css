@@ -476,3 +476,256 @@ button:hover, .boton:hover{
     justify-content: space-between; /* separa los botones a extremos */
     margin-top: 20px;
 }
+.boton_productos {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.boton_productos .btn-products {
+    display: inline-block;
+    background-color: #ffc0cb;
+    color: #fff5e1;
+    border: 2px solid #8b4513;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton_productos .btn-products:hover {
+  background-color: #ff99aa;
+}
+
+.productos_index .card {
+  width: 100% !important; 
+  max-width: 18rem;       
+  margin: 0 auto;         
+  margin-bottom: 25px; 
+
+}
+
+/* Contacto */
+/*Agrega color al fondo, los mismos del Román*/
+.logo_contacto{
+    display: flex;
+    justify-content: center;
+}
+
+.n_contacto{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*no me convence como quedooo*/
+.formulario_contacto{ 
+    background-color: #fff; 
+    border: 2px solid #8b4513;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    max-width: 520px;
+    margin: 40px auto;
+    margin-top: 60px;;
+}
+
+
+/*home admin*/
+.sidebar {
+  position: fixed;  /*no se va a mover del lado, aunquee, no sé si dejarlo así o cambiarlo*/
+  left: 0;
+  top: 0px;
+  width: 220px;             
+  height: 100%;             
+  background-color: #ffc0cb; 
+  padding-top: 10px;
+}
+
+/*Esta realmente alineado?*/
+.sidebar .logo {
+    display: block;
+    margin: 15px auto;
+    margin-top: 1px;
+}
+
+
+.sidebar ul{
+    list-style: none;
+    padding: 0%;
+    margin: 0%;
+}
+.sidebar li{
+    margin: 20px;
+}
+
+/*Título*/
+.sidebar h5 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Lato', sans-serif; 
+  margin-top: 1%; 
+}
+
+/* Estilo para los enlaces */
+.sidebar a {
+  display: block;            
+  text-decoration: none;     
+  color: #5d4037;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Hover */
+/*creo que no es el colooor*/
+.sidebar a:hover {
+  background-color: #a05a2b;
+  border-radius: 4px;
+}
+
+/* Íconos */
+.sidebar i {
+  margin-right: 10px;
+}
+
+/* ---- saludo admin ---- */
+.saludo_admin {
+  margin-left: 220px ;
+  padding: 20px;
+}
+
+.noti {
+    position: absolute; /* waaa, con esto se pone a la derechaa*/
+    font-size: 1.5rem;  /* más grande la campanita */
+    color: #8b4513;     /* café bonito, cámbialo si quieres */
+    cursor: pointer;
+    transition: color 0.3s;
+    top: 20px;
+    right: 20px;
+    
+    
+}
+
+.noti:hover {
+  color: #ff69b4;  /* cambia de color al pasar el mouse */
+}
+
+/* Blog */
+.t_blog{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.blog{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px 0;
+    
+    background-color: #ffdce7;
+    color: #fff;
+    padding: 15px ;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* sombrita */
+    position: relative; /*esto es pal acordeon uwu*/
+}
+
+.blog_desc {
+    flex: 2; /*texto usa más espacio*/
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.tituloBlog{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.etiqueta {
+    display: inline-block;padding: 3px 8px;
+    margin-left: 10px;
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f67aa5;
+    border-radius: 12px;
+    text-decoration: none;
+    align-self: flex-start; /*para que el "aling colum*2 no le afecte uwu*/
+}
+
+.etiqueta_articulo {
+    display: inline-block;
+    padding: 3px 8px; 
+    margin-left: 10px;
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f67aa5;
+    border-radius: 12px;
+    text-decoration: none; 
+    align-self: flex-start; 
+    background-color: #e98053; 
+} 
+
+.etiqueta_recomendacion {
+    display: inline-block;
+    padding: 3px 8px;
+    margin-left: 10px;
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f67aa5;
+    border-radius: 12px;
+    text-decoration: none;
+    align-self: flex-start; 
+    background-color: #d52e4d; 
+}
+
+
+
+.img_blog {
+  flex: 1; /* imagen chica*/
+  display: flex;
+  justify-content: center ;
+  align-items: flex-start;
+}
+
+.img_blog img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    height: 250px;
+}
+
+.blog_desc .accordion{
+    width: 100%;
+    margin-top: 15px;
+}
+
+.accordion .accordion-button {
+    background-color: #ffc0cb;
+    font-weight: bold;
+    border: 1px solid #8b4513;
+    color: #8b4513;
+}
+
+.accordion .accordion-button:not(.collapsed) {
+  background-color: #800020; 
+  color: #fff;
+}
+.card-nosotros:hover {
+  background-color: #ffe4ec; /* rosa clarito */
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+
+}
