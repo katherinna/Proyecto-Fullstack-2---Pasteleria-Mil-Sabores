@@ -18,12 +18,6 @@ p{
     color: #5d4037;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
 .texto-secundario{
     color: #b0bec5;
 }
@@ -391,11 +385,100 @@ button:hover, .boton:hover{
   background-color: #8b4513; /* chocolate */
   color: #fff5e1;           /* crema */
 }
-
 .card-nosotros:hover {
   background-color: #ffe4ec; /* rosa clarito */
   transform: translateY(-5px);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease;}
+.img-producto-detalle {
+    width: 400px;
+    height: 400px;
+    object-fit:cover ; /* mantiene todo el contenido, puede dejar espacio vacío */
+    background-color: #fff; /* para ver un fondo consistente */
+    border: 3px solid #8b4513; /* borde chocolate */
+    border-radius: 12px;        /* esquinas redondeadas */
+    padding: 4px;               /* pequeño espacio entre imagen y borde */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* sombra sutil para dar profundidad */
+}
+@media (min-width: 992px) {
+    .img-producto-detalle {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+}
+.personalizacion {
+    margin: 15px 0;
+    padding: 10px;
+    border: 2px dashed #d67ca0; /* borde punteado rosado */
+    border-radius: 8px;
+    background-color: #fff5e1; /* fondo crema */
+}
+
+.personalizacion label {
+    font-weight: bold;
+    color: #5d4037;
+    cursor: pointer;
+}
+
+#mensajePersonalizado {
+    border: 2px solid #d67ca0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.95rem;
+    color: #5d4037;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#mensajePersonalizado:focus {
+    border-color: #8b4513;
+    box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+    outline: none;
+}
+.compartir {
+  margin-top: 15px;
+}
+
+.compartir p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Estilos generales de botones */
+.compartir button {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  margin: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.compartir button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Facebook */
+.btn-facebook {
+  background-color: #1877f2;
+}
+
+/* Twitter (X) */
+.btn-twitter {
+  background-color: #1da1f2;
+}
+
+/* WhatsApp */
+.btn-whatsapp {
+  background-color: #25d366;
+}
+.botones-container-detalle {
+    display: flex;
+    justify-content: space-between; /* separa los botones a extremos */
+    margin-top: 20px;
 }
 
 /*Index*/
