@@ -478,6 +478,75 @@ function aplicarDescuento() {
 
 // Ejecutar al cargar carrito
 document.addEventListener("DOMContentLoaded", mostrarCarrito);
+
+
+//Contacto
+//validar correo
+function validarCorreo(correo) {
+    const regex = /^[\w.+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i;
+    return regex.test(correo);
+}
+
+//boton
+document.addEventListener("DOMContentLoaded" , () => {
+    const formulario = document.querySelector(".formulario_contacto"); //chatgpt me digo que le pusiera esto, pero la profe no lo hizo asiiii, será porque usé bootstrap?
+    const nombreInput = document.getElementById("nombre");
+    const correoInput = document.getElementById("correo");
+    const mensajeInput = document.getElementById("mensaje");
+    const mensajeAlert = document.getElementById("mensajeEnv"); //pongo esto solo porque no me funciona nadaaa
+
+
+
+    //limpiar mensaje al ingresar datos en el imput
+    [nombreInput, correoInput, mensajeInput].forEach(input => {
+        input.addEventListener ("input", () => {
+            input.setCustomValidity ("");
+            mensajeAlert.innerText= "";
+        });
+    });
+
+    //conecta el formulario con todo esto
+    formulario.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        //limpiar mensaje sprevios
+
+        mensajeAlert.innerText = "";
+
+        //validar que no esten vacíos
+        //nombre
+
+        if(!nombreInput.value.trim() || !correoInput.value.trim() || !mensajeInput.value.trim()) {
+            alert("Rellene todos los campos :)");
+            return;
+        }
+
+        //validar correo
+        if(!validarCorreo(correoInput.value.trim())){
+            alert("El correo debe ser '@duoc.cl', '@profesor.duoc.cl', '@gmail.com'.");
+            return;
+        }
+
+        mostrarMensajePushup();
+
+        // mensaje "todo bien"
+        mensajeAlert.innerText = "Mensaje enviado correctamente. Lo contactaremos a la brevedad."; //no me convence el mensaje xd
+        formulario.reset();
+    
+    });
+    
+    //perplexity, push up bonito
+    function mostrarMensajePushup() {
+        const mensaje = document.getElementById("mensajePushup");
+        mensaje.style.display = "block";
+        setTimeout(() => {
+            mensaje.style.display = "none";
+        }, 3000); // desaparece después de 3 segundos
+}
+
+});
+
+
 const productos_detalle = {
    "TC001": {
         categoria: "Tortas Cuadradas",
@@ -592,8 +661,6 @@ const productos_detalle = {
         imagen: "../img/TE002.jpg"
     }
 };
-
-
 document.addEventListener("DOMContentLoaded", function() {
     // Solo ejecutar en la página de detalles
     if (document.getElementById("categoria")) {
@@ -613,6 +680,40 @@ document.addEventListener("DOMContentLoaded", function() {
                 "<h2>Producto no encontrado</h2><a href='productos.html'>Volver al catálogo</a>";
         }
     }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const togglePass = document.getElementById("togglePass");
+    const passwordInput = document.getElementById("password");
+    const formLogin = document.getElementById("formLogin");
+    
+    togglePass.addEventListener("click", () => {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            togglePass.textContent = "Ocultar";
+        } else {
+            passwordInput.type = "password";
+            togglePass.textContent = "Mostrar";
+        }
+    });
+    
+    formLogin.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const correo = document.getElementById("correo").value.trim();
+        const password = document.getElementById("password").value;
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        
+        const usuario = usuarios.find(u => u.correo === correo);
+        
+        if (!usuario) {
+            document.getElementById("correo").classList.add("is-invalid");
+            return;
+        } else {
+            document.querySelector(".producto-detalle").innerHTML =
+                "<h2>Producto no encontrado</h2><a href='productos.html'>Volver al catálogo</a>";
+        }
+    });
 });
 
 // --- Personalización ---
@@ -643,3 +744,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
