@@ -596,9 +596,9 @@ button:hover, .boton:hover{
 }
 
 .noti {
-    position: absolute; /* waaa, con esto se pone a la derechaa*/
-    font-size: 1.5rem;  /* más grande la campanita */
-    color: #8b4513;     /* café bonito, cámbialo si quieres */
+    position: absolute; 
+    font-size: 1.5rem;  
+    color: #8b4513;     
     cursor: pointer;
     transition: color 0.3s;
     top: 20px;
@@ -658,7 +658,7 @@ button:hover, .boton:hover{
     background-color: #f67aa5;
     border-radius: 12px;
     text-decoration: none;
-    align-self: flex-start; /*para que el "aling colum*2 no le afecte uwu*/
+    align-self: flex-start; /*para que el "aling colum*2 no le afecte*/
 }
 
 .etiqueta_articulo {
@@ -728,4 +728,27 @@ button:hover, .boton:hover{
   transform: translateY(-5px);
   transition: all 0.3s ease;
 
+}
+
+.carrusel {
+    display: flex;
+    align-items: center;
+    background-color: #ffc0cb;
+    justify-content: space-between;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    gap: 40px;
+
+}
+
+.descripcion_carrusel {
+    flex: 1;
+    max-width: 500px;
+}
+
+#carouselExampleDark{
+    flex: 1;
+    max-width: 400px;
 }
