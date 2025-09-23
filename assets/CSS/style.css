@@ -473,6 +473,13 @@ button:hover, .boton:hover{
 }
 .botones-container-detalle {
     display: flex;
+    justify-content: center; /* botones al centro */
+    margin-top: 20px;
+    align-items: center;
+    
+}
+.cantidad-container-detalle {
+    display: flex;
     justify-content: space-between; /* separa los botones a extremos */
     margin-top: 20px;
 }

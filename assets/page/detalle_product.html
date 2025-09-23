@@ -85,9 +85,13 @@
 
         <!-- Información del producto -->
         <div class="col-12 col-md-6">
+            
             <p id="categoria" class="text-muted mb-2"></p>
-            <h2 id="nombre" class="mb-3"></h2>
-            <p class="precio fw-bold mb-3" id="precio"></p>
+            <div style="display: flex; align-items: center; gap: 40px;" >
+                <h2 id="nombre" class="mb-3" ></h2>
+                
+                <h2 class="mb-3" id="precio"></h2>
+            </div>
             <p id="descripcion" class="mb-4"></p>
             <div class="personalizacion">
             <label>
@@ -104,9 +108,19 @@
                 style="display:none;">
             </div>
             <br>
-            <div class="botones-container-detalle" >
-                <button class="boton" onclick="window.location.href='productos.html'" class="boton">← Volver al catálogo</button>
-                <button class="boton" id="btnAgregarCarrito" onclick="alert('Agregaste al carrito')" >Agregar al carrito</button>
+            <div class="cantidad-container-detalle">
+                <h3> Cantidad </h3>
+                <select id="cantidad" name="cantidad">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <br>
+            <div class="botones-container-detalle"  >
+                <button class="boton" id="btnAgregarCarrito" style="padding: 10px 200px;" onclick="alert('Agregaste al carrito')" >Agregar al carrito</button>
             </div>
             <br>
             <br>
@@ -118,6 +132,11 @@
             </div>
         </div>
     </div>
+    <!-- Productos aleatorios -->
+    <main class="container my-5">
+        <h2 id="tituloCategoria">Productos que te pueden interesar</h2>
+        <div id="contenedorProductos" class="row g-4 mt-3"></div>
+    </main>
 </div>
     <footer class="bg-dark text-white text-center p-3 mt-4">
         By CodeLegion FKR © 2025
