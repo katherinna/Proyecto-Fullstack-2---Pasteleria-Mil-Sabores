@@ -484,9 +484,9 @@ button:hover, .boton:hover{
 
 .boton_productos .btn-products {
     display: inline-block;
-    background-color: #ffc0cb;
+    background-color: #8b4513;
     color: #fff5e1;
-    border: 2px solid #8b4513;
+    border: 2px solid #a05a2b;
     padding: 10px 20px;
     border-radius: 8px;
     font-family: 'Lato', sans-serif;
@@ -495,7 +495,7 @@ button:hover, .boton:hover{
 }
 
 .boton_productos .btn-products:hover {
-  background-color: #ff99aa;
+  background-color: #a05a2b;
 }
 
 .productos_index .card {
@@ -518,7 +518,7 @@ button:hover, .boton:hover{
     margin-bottom: 20px;
 }
 
-/*no me convence como quedooo*/
+
 .formulario_contacto{ 
     background-color: #fff; 
     border: 2px solid #8b4513;
@@ -533,7 +533,7 @@ button:hover, .boton:hover{
 
 /*home admin*/
 .sidebar {
-  position: fixed;  /*no se va a mover del lado, aunquee, no sé si dejarlo así o cambiarlo*/
+  position: fixed; 
   left: 0;
   top: 0px;
   width: 220px;             
