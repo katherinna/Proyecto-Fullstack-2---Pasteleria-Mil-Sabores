@@ -331,7 +331,55 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-
+//minicatalogo aleatorio
+function mostrarMiniCatalogo() {
+    const contenedor = document.getElementById("contenedorMiniCatalogo");
+    if (!contenedor) return;
+  
+    contenedor.innerHTML = "";
+  
+    // Copiamos el array para no modificar el original
+    const productosCopia = [...productos];
+  
+    // Función para obtener N elementos aleatorios sin repetición
+    function obtenerAleatorios(arr, n) {
+      const resultado = [];
+      const usado = new Set();
+      while (resultado.length < n && resultado.length < arr.length) {
+        const indice = Math.floor(Math.random() * arr.length);
+        if (!usado.has(indice)) {
+          usado.add(indice);
+          resultado.push(arr[indice]);
+        }
+      }
+      return resultado;
+    }
+  
+    const aleatorios = obtenerAleatorios(productosCopia, 4);
+  
+    aleatorios.forEach((prod) => {
+      const div = document.createElement("div");
+      div.classList.add("col-md-3", "mb-4");
+  
+      div.innerHTML = `
+        <div class="card h-100 shadow-sm">
+          <img src="../img/${prod.img}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; height: 200px;">
+          <div class="card-body p-3 d-flex flex-column">
+            <h5 class="card-title mb-2">${prod.nombre}</h5>
+            <p class="card-text mb-2"><strong>$${prod.precio.toLocaleString()}</strong></p>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='detalle_product.html?id=${prod.codigo}'">Ver Detalles</button>
+            <br>
+            <button class="btn btn-primary mt-auto" onclick="alert('Agregaste ${prod.nombre} al carrito')">Agregar al carrito</button>
+          </div>
+        </div>
+      `;
+  
+      contenedor.appendChild(div);
+    });
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+        mostrarMiniCatalogo();
+  });
 // Selecciona 3 productos aleatorios
 function obtenerProductosAleatorios() {
     const copia = [...productos];
