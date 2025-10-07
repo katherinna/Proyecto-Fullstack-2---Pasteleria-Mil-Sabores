@@ -785,3 +785,125 @@ button:hover, .boton:hover{
 
 }
 */
+
+.footer-custom {
+  background-color: #fdf3e7; /* crema claro */
+  color: #4b2c20; /* café medio */
+  font-family: 'Lato', sans-serif;
+  border-top: 3px solid #e7a1b0;
+  padding: 45px 0 20px 0;
+}
+
+.footer-logo {
+  height: 155px; /* un poco más grande */
+  max-width: 100%;
+  margin-top: -10px; /* lo sube un poco visualmente */
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.footer-categorias {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4b2c20;
+  letter-spacing: 0.3px;
+}
+
+.footer-categorias-linea {
+  margin-bottom: 6px;
+}
+
+.footer-categorias a {
+  color: #4b2c20;
+  text-decoration: none;
+  padding: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.footer-categorias a:hover {
+  color: #e38ca8;
+  text-decoration: underline;
+}
+
+.footer-texto-suscripcion {
+  font-size: 0.95rem;
+  color: #4b2c20;
+  font-style: italic;
+  margin-right: 5px;
+}
+
+.footer-suscripcion input {
+  border: 1px solid #d8bda7;
+  border-radius: 8px 0 0 8px;
+  padding: 8px 12px;
+  outline: none;
+  background-color: #fff;
+  color: #4b2c20;
+  width: 200px;
+}
+
+.footer-suscripcion .btn-sub {
+  background-color: #e7a1b0;
+  color: #4b2c20;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  padding: 8px 15px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.footer-suscripcion .btn-sub:hover {
+  background-color: #e38ca8;
+  color: #fff;
+}
+
+.webpay-img {
+  height: 45px;
+  margin-top: 8px;
+}
+
+.footer-copy {
+  border-top: 1px solid #e7c7b2;
+  margin-top: 25px;
+  padding-top: 10px;
+  color: #6b4a3c;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .footer-categorias {
+    font-size: 0.9rem;
+  }
+
+  .footer-categorias-linea {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .footer-suscripcion {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-suscripcion input,
+  .footer-suscripcion .btn-sub {
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .footer-logo {
+    margin-top: 0;
+    height: 130px;
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+  }
+}
