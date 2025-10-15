@@ -81,31 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // ---- VALIDACIÓN RUN ----
-    function validarRun(run) {
-        run = run.replace(/\s+/g, "").toUpperCase(); // limpiar espacios y mayúsculas
-        if (!/^\d{7,8}[0-9K]$/.test(run)) return false; // debe tener 7-8 dígitos + DV
-
-        const cuerpo = run.slice(0, -1);
-        const dv = run.slice(-1);
-
-        let suma = 0;
-        let multiplo = 2;
-
-        for (let i = cuerpo.length - 1; i >= 0; i--) {
-            suma += parseInt(cuerpo[i], 10) * multiplo;
-            multiplo = multiplo < 7 ? multiplo + 1 : 2;
-        }
-        const resto = suma % 11;
-        const dvEsperado = resto === 0 ? "0" : resto === 1 ? "K" : String(11 - resto);
-        return dv === dvEsperado;
-    }
-
-    // ---- VALIDACIÓN CORREO ----
-    function validarCorreo(correo) {
-        const regex = /^[\w._%+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i;
-        return regex.test(correo);
-    }
-
+    aa
     // Cargar usuarios previos desde localStorage
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
