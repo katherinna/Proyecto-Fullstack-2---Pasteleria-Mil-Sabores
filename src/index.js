@@ -45,8 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         window.location.href =
         correo.toLowerCase() === "admin@duoc.cl"
-        ?'assets/page/home_admin.html?nombre=${encodeURIComponent(nombre)}'
-        :'assets/page/contacto.html?nombre=${encodeURIComponent(nombre)}'
+        ?`assets/page/home_admin.html?nombre=${encodeURIComponent(nombre)}`
+        :`assets/page/contacto.html?nombre=${encodeURIComponent(nombre)}`
+      
         
       }, 1000);
      } catch (error) {

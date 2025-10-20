@@ -1,17 +1,12 @@
 import {db} from "../config/firebase";
-import { collection, addDoc, getDoc, query, where } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
-export async function addUser(user) {
-    return await addDoc(collection(db, "usuario"), {...user, createdAt: new Date()});
-}
-
-
-/*usuario
+//usuario
 export async function addUser(user) {
     try{
-        const docRef = await addDoc(collection(dblClick, "usuario"), {
+        const docRef = await addDoc(collection(db, "usuario"), {
             ...user,
-            createAt: new Date(),
+            createdAt: new Date(),
         });
         console.log("Usuario registrado con ID: ", docRef.id);
         return docRef;
@@ -21,5 +16,5 @@ export async function addUser(user) {
         return error;
 
     }
-}*/
+}
 

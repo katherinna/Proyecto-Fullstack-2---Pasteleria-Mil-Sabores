@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Input from '../atoms/Input';
 import Button from '../atoms/Button';
 import { validarRun, validarCorreo } from '../../utils/validaciones';
-import { addUsser } from '../../services/userService';
+import { addUser } from '../../Services/firestoreService';
 import { useNavigate } from 'react-router-dom'; // ← React Router v6
 
 const UserForm = () => {
@@ -32,8 +32,10 @@ const UserForm = () => {
       return setMsg('Correo inválido. Debe ser un correo de Duoc UC o Gmail.');
     //if(!)validar edad.
 
-    await addUsser(form);
+    await addUser(form);
     setMsg('Usuario registrado con éxito.');
+    //Comprobar si funciona
+    console.log('Usuario registrado:', form);
 
     setTimeout(() => {
       navigate(
