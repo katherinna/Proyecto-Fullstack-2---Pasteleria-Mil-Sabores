@@ -1,4 +1,5 @@
 import { validarRun, validarCorreo, validarPassword, validarEdad, validarCodigoPromo } from '../utils/validaciones';
+import { db } from '../config/firebase';
 
 export class UserManager {
     constructor() {
@@ -51,8 +52,21 @@ export class UserManager {
 
         // Guardar usuario
         const nuevoUsuario = { ...userData, beneficios };
+
+        //en localStorage
         this.usuarios.push(nuevoUsuario);
         localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
+        
+
+        //en firebase
+         addUser(nuevoUsuario)
+        .then((docRef) => {
+            console.log("Usuario guardado en Firebase con ID:", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error guardando en Firebase:", error);
+        });
+        
         return { success: true, message: "Registro exitoso", beneficios };
     }
 
