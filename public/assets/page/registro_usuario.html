@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -76,7 +78,7 @@
     <main class="registro-container" style="max-width:600px;margin:40px auto;padding:20px;">
         <h2 class="mb-4">Crear una cuenta</h2>
         
-        <form id="formRegistro" class="p-4 border rounded bg-light">
+        <form id="formUsuario" class="p-4 border rounded bg-light">
             <div class="form-group mb-3">
                 <label for="run">RUN</label>
                 <input type="text" class="form-control" id="run" name="run" required>
@@ -148,8 +150,13 @@
             
             <button type="submit" class="btn btn-primary w-100">Registrar</button>
         </form>
+        <p id="mensaje" style="color:brown; margin-top:10px;"></p>
     </main>
-
+    <script src="/static/js/bundle.js"></script>
+     <!-- 🔹 SDK de Firebase (versión 8.x, compatible con tu código actual) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="../JS/script.js" defer></script>
 </body>
