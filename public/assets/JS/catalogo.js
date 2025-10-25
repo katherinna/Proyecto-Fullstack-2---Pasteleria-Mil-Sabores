@@ -21,7 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   
     // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) {
+      console.log("Inicializando Firebase");
+      firebase.initializeApp(firebaseConfig);
+    } else {
+      console.log("Firebase ya está inicializado");
+    }
     const db = firebase.firestore();
   
     // Inicializar la aplicación

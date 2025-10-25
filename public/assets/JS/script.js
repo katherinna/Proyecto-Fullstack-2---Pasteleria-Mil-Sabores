@@ -1,13 +1,14 @@
 // --- Validaciones básicas ---
-function validarCorreo(correo) {
+/*function validarCorreo(correo) {
   const regex = /^[\w.+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i;
   return regex.test(correo);
 }
-function validarRun(run) {
+/*function validarRun(run) {
   const regex = /^[0-9]{7,8}[0-9K]$/;
   return regex.test(run);
-}
-function esMayorEdad(fecha) {
+}*/
+
+/*function esMayorEdad(fecha) {
   if (!fecha) return true; // opcional
   const hoy = new Date();
   const fn = new Date(fecha);
@@ -107,20 +108,20 @@ document.addEventListener("DOMContentLoaded", () => {
     runInput.value = runInput.value.trim().toUpperCase();
 
     // Capturar valores
-    const run = runInput.value;
+    /*const run = runInput.value;
     const nombre = nombreInput.value.trim();
     const apellidos = apellidosInput.value.trim();
     const correo = correoInput.value.trim();
     const fecha = fechaInput.value;
     const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
+    //const confirmPassword = confirmPasswordInput.value;
     const direccion = direccionInput.value.trim();
-    const region = regionSelect.value;
-    const comuna = comunaSelect.value;
+    //const region = regionSelect.value;
+    //const comuna = comunaSelect.value;*/
 
     // Validaciones
-    if (!validarRun(run)) {
-      runInput.setCustomValidity("El RUN es incorrecto. Debe tener 7 u 8 dígitos + número o K verificador.");
+    /*if (!validarRun(run)) {
+      runInput.setCustomValidity("El RUN es incorrecto. Debe tener 7 u 8 dígitos + número o K verificador."); //quizás sea mejor poner un ejemplo
       return runInput.reportValidity();
     }
     if (!nombre) {
@@ -143,19 +144,20 @@ document.addEventListener("DOMContentLoaded", () => {
       passwordInput.setCustomValidity("La contraseña debe tener al menos 6 caracteres.");
       return passwordInput.reportValidity();
     }
-    if (password !== confirmPassword) {
+
+    if (password !== confirmPassword) { //dudas x2
       confirmPasswordInput.setCustomValidity("Las contraseñas no coinciden.");
       return confirmPasswordInput.reportValidity();
     }
-    if (!region) {
+    /*if (!region) {
       regionSelect.setCustomValidity("Seleccione una región.");
       return regionSelect.reportValidity();
     }
     if (!comuna) {
       comunaSelect.setCustomValidity("Seleccione una comuna.");
       return comunaSelect.reportValidity();
-    }
-    if (!direccion) {
+    }*/
+    /*if (!direccion) {
       direccionInput.setCustomValidity("La dirección es obligatoria.");
       return direccionInput.reportValidity();
     }
@@ -164,10 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
     mensaje.textContent = "Formulario enviado correctamente ✅";
     console.log("✅ Datos listos:", {
       run, nombre, apellidos, correo, fecha,
-      region, comuna, direccion
-    });
+      direccion
+    }); //region, comuna,
 
     // Aquí podrías guardar en Firestore si corresponde
     // db.collection("usuario").add({...})
   });
-});
+});*/
