@@ -23,7 +23,7 @@ export function validarCorreo(correo) {
 }
 
 export function validarPassword(password) {
-    return password.length >= 6;
+    return password.length >= 4 && password.length<= 10;
 }
 
 export function validarPasswordsIguales(password, confirmPassword) {
@@ -42,6 +42,7 @@ export function validarEdad(fechaNacimiento) {
 }
 
 export function validarCodigoPromo(codigo) {
+    if (!codigo) return true;
     return codigo.toUpperCase() === "FELICES50";
 }
 

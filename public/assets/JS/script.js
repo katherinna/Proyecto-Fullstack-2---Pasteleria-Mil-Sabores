@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fechaInput.setCustomValidity("Debe ser mayor de 18 años para registrarse.");
       return fechaInput.reportValidity();
     }
-    if (password.length < 6) {
+    if (password.length < 4) {
       passwordInput.setCustomValidity("La contraseña debe tener al menos 6 caracteres.");
       return passwordInput.reportValidity();
     }
